@@ -62,7 +62,7 @@ function Dashboard () {
   return (
     <div>
       <Space size={20} direction="vertical">
-        <Typography.Title level={4}>Dashboard</Typography.Title>
+        <Typography.Title level={4}>Overview</Typography.Title>
         <SelectedMineFilter
           selectedMine={selectedMine} // Pass the selectedMine state as a prop
           handleMineChange={handleMineChange} // Pass the handler function as a prop

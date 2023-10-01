@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {DatePicker} from 'antd';
 import moment from 'moment';
 
+// Importing ChartJS components and plugins
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,6 +18,7 @@ import {
 import {Line} from 'react-chartjs-2';
 import {getProduction} from '../../../services/database-service';
 
+// Registering ChartJS components and plugins
 ChartJS.register (
   CategoryScale,
   LinearScale,
@@ -27,14 +29,17 @@ ChartJS.register (
   Tooltip,
   Legend
 );
+
 const {RangePicker} = DatePicker;
 
 function DashboardLineChart({selectedMineData}) {
+  // State to manage the date range for filtering production data
   const [dateRange, setDateRange] = useState ({
     startDate: moment ().subtract (5, 'years'),
     endDate: moment (),
   });
 
+  // State to manage chart data for displaying production yield
   const [chartData, setChartData] = useState ({
     labels: [],
     datasets: [
@@ -50,43 +55,58 @@ function DashboardLineChart({selectedMineData}) {
 
   useEffect (
     () => {
-      if (selectedMineData && dateRange.startDate && dateRange.endDate) {
-        const mineId = selectedMineData.id;
+      const fetchData = async () => {
+        if (selectedMineData && dateRange.startDate && dateRange.endDate) {
+          const mineId = selectedMineData.id;
+          try {
+            const productionData = await getProduction (mineId);
+            if (Array.isArray (productionData)) {
+              const labels = productionData
+                .map (value => value.year)
+                .filter (year => {
+                  const yearNum = parseInt (year, 10);
+                  return (
+                    yearNum >= dateRange.startDate.year () &&
+                    yearNum <= dateRange.endDate.year ()
+                  );
+                });
 
-        // Update this function to fetch production data based on date range
-        getProduction (mineId)
-          .then (res => {
-            if (Array.isArray (res)) {
-              const labels = res.map (value => value.year).filter (year => {
-                const yearNum = parseInt (year, 10);
-                return (
-                  yearNum >= dateRange.startDate.year () &&
-                  yearNum <= dateRange.endDate.year ()
-                );
+              const uniqueMaterials = [
+                ...new Set (productionData.map (item => item.material)),
+              ];
+
+              const datasets = uniqueMaterials.map (material => {
+                const randomColor = `rgb(${Math.floor (Math.random () * 256)}, ${Math.floor (Math.random () * 256)}, ${Math.floor (Math.random () * 256)})`;
+                const dataForMaterial = productionData
+                  .filter (item => item.material === material)
+                  .map (item => parseInt (item.yield, 10));
+                return {
+                  label: material,
+                  data: dataForMaterial,
+                  borderColor: randomColor,
+                  backgroundColor: randomColor,
+                };
               });
 
-              const data = res.map (value => value.yield);
-
               const dataSource = {
-                labels,
-                datasets: [
-                  {
-                    label: 'Yield',
-                    data,
-                    backgroundColor: 'rgba(53, 162, 235, 0.5)',
-                  },
-                ],
+                labels: labels,
+                datasets: datasets,
               };
 
               setChartData (dataSource);
             } else {
-              console.error ('Production data is not an array:', res);
+              console.error (
+                'Production data is not an array:',
+                productionData
+              );
             }
-          })
-          .catch (error => {
+          } catch (error) {
             console.error ('Error fetching production data:', error);
-          });
-      }
+          }
+        }
+      };
+
+      fetchData ();
     },
     [selectedMineData, dateRange]
   );
@@ -100,12 +120,13 @@ function DashboardLineChart({selectedMineData}) {
     setDateRange (res);
   };
 
+  // Chart options for appearance and behavior
   const options = {
     responsive: true,
     plugins: {
       legend: {
         position: 'bottom',
-        display: false,
+        display: true,
       },
       title: {
         display: true,
@@ -120,7 +141,6 @@ function DashboardLineChart({selectedMineData}) {
         <Typography.Text>Filter By Year: </Typography.Text>
         <RangePicker
           picker="year"
-          // value={[dateRange.startDate, dateRange.endDate]}
           onChange={value =>
             handleDateRangeChange ({
               startDate: value,

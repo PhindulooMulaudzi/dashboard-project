@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Space, Statistic, Typography} from 'antd';
+import {Card, Space, Typography} from 'antd';
 import {
   Chart as ChartJS,
   CategoryScale,
