@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Space, Statistic} from 'antd';
+import {Card, Space, Statistic, Typography} from 'antd';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -23,17 +23,15 @@ ChartJS.register (
   Legend
 );
 
-const statisticStyle = {
-  marginTop: '16px', // Adjust the top margin
-  fontSize: '300px', // Adjust the font size
-};
-
 function DashboardCard({icon, title, value}) {
   return (
     <Card>
       <Space direction="horizontal">
         {icon}
-        <Statistic title={title} value={value} style={statisticStyle} />
+        <Space direction="vertical">
+          <Typography.Text>{title}</Typography.Text>
+          <Typography.Text>{value}</Typography.Text>
+        </Space>
       </Space>
     </Card>
   );

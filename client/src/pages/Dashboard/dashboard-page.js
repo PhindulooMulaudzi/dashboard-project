@@ -59,8 +59,6 @@ function Dashboard () {
     [selectedMineData]
   );
 
-  console.log (contact);
-
   return (
     <div>
       <Space size={20} direction="vertical">
@@ -74,36 +72,39 @@ function Dashboard () {
           <Space direction="vertical">
             <Space direction="horizontal">
               <Space direction="vertical">
-                <Card>
-                  <Card.Meta title="Contact Person" />
-                  <Space direction="horizontal">
-                    <Space style={{paddingTop: '8px'}}>
-                      <Icons.DollarCircleOutlined
-                        style={{
-                          color: 'green',
-                          backgroundColor: 'rgba(0,255,0,0.25',
-                          borderRadius: 20,
-                          fontSize: 24,
-                          padding: 8,
-                        }}
-                      />
+                <Card style={{width: '100%', height: '210px'}}>
+                  <Space direction="vertical">
+                    <Typography.Text>Contact Person</Typography.Text>
+
+                    <Space direction="horizontal">
+                      <Space style={{paddingTop: '8px'}}>
+                        <Icons.DollarCircleOutlined
+                          style={{
+                            color: 'green',
+                            backgroundColor: 'rgba(0,255,0,0.25',
+                            borderRadius: 22,
+                            fontSize: 24,
+                            padding: 8,
+                          }}
+                        />
+                      </Space>
+                      {contact && contact.length > 0
+                        ? <Space
+                            direction="vertical"
+                            style={{paddingTop: '10px'}}
+                          >
+                            <Typography.Text>
+                              Name: {contact[0].name + ' ' + contact[0].surname}
+                            </Typography.Text>
+                            <Typography.Text>
+                              Email: {contact[0].email}
+                            </Typography.Text>
+                            <Typography.Text>
+                              Phone: {contact[0].contact_number}
+                            </Typography.Text>
+                          </Space>
+                        : <div />}
                     </Space>
-                    {contact && contact.length > 0
-                      ? <Space
-                          direction="vertical"
-                          style={{paddingTop: '10px'}}
-                        >
-                          <Typography.Text>
-                            Name: {contact[0].name + ' ' + contact[0].surname}
-                          </Typography.Text>
-                          <Typography.Text>
-                            Email: {contact[0].email}
-                          </Typography.Text>
-                          <Typography.Text>
-                            Phone: {contact[0].contact_number}
-                          </Typography.Text>
-                        </Space>
-                      : <div />}
                   </Space>
                 </Card>
               </Space>
