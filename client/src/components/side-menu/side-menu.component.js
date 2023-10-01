@@ -32,19 +32,9 @@ function SideMenu () {
             key: '/',
           },
           {
-            label: 'Inventory',
+            label: 'Incident Map',
             icon: <Icons.ShopOutlined />,
-            key: '/inventory',
-          },
-          {
-            label: 'Orders',
-            icon: <Icons.ShoppingCartOutlined />,
-            key: '/orders',
-          },
-          {
-            label: 'Customers',
-            icon: <Icons.UserOutlined />,
-            key: '/customers',
+            key: '/map',
           },
         ]}
       />

@@ -7,7 +7,7 @@ function AppRoutes () {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />
-      <Route path="/inventory" element={<Inventory />} />
+      <Route path="/map" element={<Inventory />} />
     </Routes>
   );
 }
