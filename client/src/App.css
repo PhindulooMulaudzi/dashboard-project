@@ -18,7 +18,7 @@
 
 /* Styles for the application logo */
 .app-logo {
-  pointer-events: none; /* Disable pointer events for the logo */
+  pointer-events: none; /* Disable pointer events */
 }
 
 /* Styles for the footer section of the application */
