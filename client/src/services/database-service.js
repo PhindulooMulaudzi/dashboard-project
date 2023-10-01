@@ -70,7 +70,8 @@ export const getIncidents = id => {
 export const postIncident = entry => {
   Axios.post ('http://localhost:3001/add_incident', entry)
     .then (() => {
-      alert ('New incident added');
+      alert ('New incident added, the page will now refresh.');
+      window.location.reload (false);
     })
     .catch (() => {
       alert ('Error adding the incident. Please try again later.');
@@ -81,7 +82,8 @@ export const postIncident = entry => {
 export const deleteIncident = id => {
   Axios.delete (`http://localhost:3001/delete_incident/${id}`)
     .then (() => {
-      alert ('Incident deleted successfully');
+      alert ('Incident deleted successfully, the page will now refresh.');
+      window.location.reload (false);
     })
     .catch (() => {
       alert ('Error deleting the incident. Please try again later.');
