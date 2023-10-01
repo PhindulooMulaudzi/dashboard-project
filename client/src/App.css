@@ -1,38 +1,86 @@
+/* Styles for the main application container */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  height: 120vh; /* 120% of the viewport height */
+}
+
+/* Styles for the header section of the application */
+.AppHeader {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 4px 20px 4px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* Styles for the application logo */
+.app-logo {
+  pointer-events: none; /* Disable pointer events for the logo */
+}
+
+/* Styles for the footer section of the application */
+.AppFooter {
+  height: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* Styles for the side menu and main content section */
+.SideMenuAndPageContent {
+  display: flex;
+  flex: 1; /* Take all available space */
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* Styles for the side menu */
+.SideMenu {
+  height: 100%;
+}
+
+/* Styles for the vertical side menu */
+.SideMenuVertical {
+  height: 100%;
+}
+
+/* Styles for the main page content */
+.PageContent {
+  padding-left: 12px;
+}
+
+/* Reset styles for all elements */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styling for the root element */
+#root {
+  height: 100vh; /* 100% of the viewport height */
+}
+
+/* Styles for the Leaflet map container */
+.leaflet-container {
+  height: 80vh; /* 80% of the viewport height */
+  width: 80vw; /* 80% of the viewport width */
+}
+
+/* Styles for cluster icons */
+.cluster-icon {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: translate(-25%, -25%);
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  align-items: center;
+  font-weight: 900;
+  font-size: 1.5rem;
 }
