@@ -1,9 +1,7 @@
-import {Card, Typography} from 'antd';
 import React, {useEffect, useState} from 'react';
+import {Card, Typography} from 'antd';
 import {DatePicker} from 'antd';
 import moment from 'moment';
-
-// Importing ChartJS components and plugins
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -18,7 +16,7 @@ import {
 import {Line} from 'react-chartjs-2';
 import {getProduction} from '../../../services/database-service';
 
-// Registering ChartJS components and plugins
+// Register ChartJS components and plugins
 ChartJS.register (
   CategoryScale,
   LinearScale,
@@ -32,6 +30,7 @@ ChartJS.register (
 
 const {RangePicker} = DatePicker;
 
+// Functional component for displaying a line chart of production yield
 function DashboardLineChart({selectedMineData}) {
   // State to manage the date range for filtering production data
   const [dateRange, setDateRange] = useState ({
@@ -139,6 +138,7 @@ function DashboardLineChart({selectedMineData}) {
     <Card style={{width: 500, height: 350}}>
       <div>
         <Typography.Text>Filter By Year: </Typography.Text>
+        {/* DateRangePicker for filtering by year */}
         <RangePicker
           picker="year"
           onChange={value =>
@@ -148,6 +148,7 @@ function DashboardLineChart({selectedMineData}) {
             })}
         />
       </div>
+      {/* Display the line chart */}
       <Line options={options} data={chartData} />
     </Card>
   );

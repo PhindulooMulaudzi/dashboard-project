@@ -11,11 +11,13 @@ import {Button} from 'antd';
 import {deleteIncidentForm} from '../../pages/map/delete-button-handler';
 import {addIncidentButtonEvent} from '../../pages/map/add-button-handler';
 
+// Custom icon for markers
 const customIcon = new Icon ({
   iconUrl: 'https://cdn-icons-png.flaticon.com/128/186/186250.png',
   iconSize: [38, 38],
 });
 
+// Function to create a custom cluster icon
 const createCustomClusterIcon = cluster => {
   return new divIcon ({
     html: `<div class="cluster-icon">${cluster.getChildCount ()}</div>`,
@@ -32,15 +34,12 @@ const Inventory = () => {
   let mapCenter = null;
   let mapMarkers = [];
 
-  // const handleDeleteMarker = id => {
-  //   const updatedMarkers = mapMarkers.filter (marker => marker.id !== id);
-  //   setMapMarkers (updatedMarkers);
-  // };
-
+  // Handler for mine change
   const handleMineChange = useCallback (value => {
     setSelectedMine (value);
   }, []);
 
+  // Effect to fetch mines
   useEffect (
     () => {
       getMines ().then (minesData => {
@@ -55,6 +54,7 @@ const Inventory = () => {
 
   const selectedMineData = mines.find (mine => mine.name === selectedMine);
 
+  // Effect to fetch incidents for the selected mine
   useEffect (
     () => {
       if (selectedMineData) {
@@ -75,6 +75,7 @@ const Inventory = () => {
     [selectedMineData]
   );
 
+  // Populate mapCenter and mapMarkers based on incidents data
   if (incidents) {
     incidents.forEach (incident => {
       if (mapCenter === null) {
@@ -163,7 +164,7 @@ const Inventory = () => {
                               marker.id,
                               marker.description,
                               marker.severity,
-                              marker.geocode[0] + ' , ' + marker.geocode[1]
+                              `${marker.geocode[0]}, ${marker.geocode[1]}`
                             );
                             // handleDeleteMarker (marker.id);
                           }}

@@ -15,6 +15,7 @@ import {
 
 import {getIncidentsCount} from '../../../services/database-service';
 
+// Register Chart.js components
 ChartJS.register (
   CategoryScale,
   LinearScale,
@@ -26,7 +27,9 @@ ChartJS.register (
   Legend
 );
 
+// Functional component for displaying a bar chart of incidents in the dashboard
 function DashboardIncidentsBarChart({selectedMineData}) {
+  // State to hold the chart data
   const [chartData, setChartData] = useState ({
     labels: [],
     datasets: [
@@ -43,9 +46,11 @@ function DashboardIncidentsBarChart({selectedMineData}) {
       if (selectedMineData) {
         const mineId = selectedMineData.id;
 
+        // Fetch incident count data for the selected mine
         getIncidentsCount (mineId)
           .then (res => {
             if (Array.isArray (res)) {
+              // Extract labels and data for the chart
               const labels = res.map (value => value.description);
               const data = res.map (value => value.occurrence_count);
 
@@ -60,7 +65,7 @@ function DashboardIncidentsBarChart({selectedMineData}) {
                 ],
               };
 
-              setChartData (dataSource);
+              setChartData (dataSource); // Update chart data
             } else {
               console.error ('Production data is not an array:', res);
             }
@@ -73,6 +78,7 @@ function DashboardIncidentsBarChart({selectedMineData}) {
     [selectedMineData]
   );
 
+  // Chart options for customization
   const options = {
     responsive: true,
     plugins: {
@@ -93,6 +99,7 @@ function DashboardIncidentsBarChart({selectedMineData}) {
 
   return (
     <Card style={{width: 500, height: 350}}>
+      {/* Display the bar chart */}
       <Bar options={options} data={chartData} />
     </Card>
   );

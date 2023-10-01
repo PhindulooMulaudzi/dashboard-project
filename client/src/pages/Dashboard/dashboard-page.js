@@ -18,10 +18,12 @@ function Dashboard () {
   const [mines, setMines] = useState ([]);
   const [contact, setContact] = useState ([]);
 
+  // Handler for mine change
   const handleMineChange = useCallback (value => {
     setSelectedMine (value);
   }, []);
 
+  // Effect to fetch mines
   useEffect (
     () => {
       getMines ().then (minesData => {
@@ -48,6 +50,7 @@ function Dashboard () {
       : '';
   }
 
+  // Effect to fetch contact information
   useEffect (
     () => {
       if (selectedMineData) {

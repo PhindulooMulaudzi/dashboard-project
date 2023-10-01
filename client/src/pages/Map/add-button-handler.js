@@ -3,6 +3,7 @@ import {postIncident} from '../../services/database-service';
 
 const {Option} = Select;
 
+// Function to handle the event when adding a new incident
 const addIncidentButtonEvent = selectedMine => {
   let formInput = {
     mine_id: selectedMine.id,
@@ -12,19 +13,21 @@ const addIncidentButtonEvent = selectedMine => {
     longitude: '',
   };
 
+  // Function to handle 'OK' button click
   const handleOk = () => {
     const hasEmptyValue = Object.values (formInput).some (
       value => value === ''
     );
 
     if (hasEmptyValue) {
-      // handle case of not all inputs filled
+      // Handle the case of not all inputs filled
     } else {
-      // api call to commit incident to the database
+      // API call to commit incident to the database
       postIncident (formInput);
     }
   };
 
+  // Function to handle input change
   const handleInputChange = (field, value) => {
     formInput = {
       ...formInput,
@@ -32,6 +35,7 @@ const addIncidentButtonEvent = selectedMine => {
     };
   };
 
+  // Initial form values for the incident details
   const formInitialValues = {
     field0: selectedMine.id,
     field1: '',
@@ -40,6 +44,7 @@ const addIncidentButtonEvent = selectedMine => {
     field4: '',
   };
 
+  // Display the confirmation modal for adding a new incident
   return Modal.confirm ({
     title: 'Enter new incident details',
     content: (
@@ -84,8 +89,8 @@ const addIncidentButtonEvent = selectedMine => {
         </Form.Item>
       </Form>
     ),
-    onOk: handleOk,
+    onOk: handleOk, // Call the handleOk function when 'OK' is clicked
   });
 };
 
-export {addIncidentButtonEvent};
+export {addIncidentButtonEvent}; // Export the addIncidentButtonEvent function
