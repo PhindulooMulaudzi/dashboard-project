@@ -78,7 +78,7 @@ function Dashboard () {
 
                     <Space direction="horizontal">
                       <Space style={{paddingTop: '8px'}}>
-                        <Icons.DollarCircleOutlined
+                        <Icons.UserOutlined
                           style={{
                             color: 'green',
                             backgroundColor: 'rgba(0,255,0,0.25',
@@ -144,7 +144,7 @@ function Dashboard () {
 
                 <DashboardCard
                   icon={
-                    <Icons.UserOutlined
+                    <Icons.PushpinOutlined
                       style={{
                         color: 'purple',
                         backgroundColor: 'rgba(0,255,255,0.25',
