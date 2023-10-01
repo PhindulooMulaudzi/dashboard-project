@@ -6,10 +6,10 @@ import MarkerClusterGroup from 'react-leaflet-cluster';
 import {Card, Space, Typography} from 'antd';
 import {getIncidents, getMines} from '../../services/database-service';
 import SelectedMineFilter
-  from '../../components/PageContent/SelectedMineFilter';
+  from '../../components/page-content/selected-mine-filter.component';
 import {Button} from 'antd';
-import {deleteIncidentForm} from '../../utils/deleteIncidentButtonEvent';
-import {addIncidentButtonEvent} from '../../utils/addIncidentButtonEvent';
+import {deleteIncidentForm} from '../../pages/map/delete-button-handler';
+import {addIncidentButtonEvent} from '../../pages/map/add-button-handler';
 
 const customIcon = new Icon ({
   iconUrl: 'https://cdn-icons-png.flaticon.com/128/186/186250.png',

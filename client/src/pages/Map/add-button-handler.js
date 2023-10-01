@@ -1,5 +1,5 @@
 import {Modal, Form, Input, Space, Select, Typography} from 'antd';
-import {postIncident} from '../API';
+import {postIncident} from '../../services/database-service';
 
 const {Option} = Select;
 

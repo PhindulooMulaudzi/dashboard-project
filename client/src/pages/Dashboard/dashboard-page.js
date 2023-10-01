@@ -5,13 +5,14 @@ import * as Icons from '@ant-design/icons';
 import {getContact, getMines} from '../../services/database-service';
 
 import DashboardIncidentsBarChart
-  from '../../components/PageContent/Dashboard/DashboardIncidentBarChart';
+  from '../../components/page-content/dashboard/incident-bar-chart.component';
 import DashboardCard
-  from '../../components/PageContent/Dashboard/DashboardCard';
+  from '../../components/page-content/dashboard/dashboard-card.component';
 import DashboardLineChart
-  from '../../components/PageContent/Dashboard/DashboardLineChart';
+  from '../../components/page-content/dashboard/yield-line-chart.component';
 import SelectedMineFilter
-  from '../../components/PageContent/SelectedMineFilter';
+  from '../../components/page-content/selected-mine-filter.component';
+
 function Dashboard () {
   const [selectedMine, setSelectedMine] = useState (null);
   const [mines, setMines] = useState ([]);
@@ -46,24 +47,6 @@ function Dashboard () {
       ? `${selectedMineData.latitude}, ${selectedMineData.longitude}`
       : '';
   }
-
-  // useEffect (
-  //   () => {
-  //     if (selectedMineData) {
-  //       getContact (selectedMineData.contact_person_id).then (res => {
-  //         const contactString = res
-  //           .map (
-  //             contact =>
-  //               `${contact.name} ${contact.surname}\n${contact.email}\n${contact.contact_number}`
-  //           )
-  //           .join ('\n\n'); // Use double newline between each contact
-
-  //         setContact (contactString);
-  //       });
-  //     }
-  //   },
-  //   [selectedMineData]
-  // );
 
   useEffect (
     () => {

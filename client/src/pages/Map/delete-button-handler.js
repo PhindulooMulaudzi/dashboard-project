@@ -1,6 +1,6 @@
 import React from 'react';
 import {Modal, Form, Typography} from 'antd';
-import {deleteIncident} from '../API';
+import {deleteIncident} from '../../services/database-service';
 
 const deleteIncidentForm = (id, description, severity, location) => {
   const handleOk = () => {
