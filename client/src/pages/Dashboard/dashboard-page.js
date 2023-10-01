@@ -2,7 +2,8 @@ import React, {useEffect, useState, useCallback} from 'react';
 import {Card, Space, Typography} from 'antd';
 import * as Icons from '@ant-design/icons';
 
-import {getContact, getMines} from '../../API';
+import {getContact, getMines} from '../../services/database-service';
+
 import DashboardIncidentsBarChart
   from '../../components/PageContent/Dashboard/DashboardIncidentBarChart';
 import DashboardCard

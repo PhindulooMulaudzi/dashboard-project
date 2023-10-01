@@ -4,7 +4,7 @@ import {MapContainer, Marker, TileLayer, Popup} from 'react-leaflet';
 import {Icon, divIcon, point} from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import {Card, Space, Typography} from 'antd';
-import {getIncidents, getMines} from '../../API';
+import {getIncidents, getMines} from '../../services/database-service';
 import SelectedMineFilter
   from '../../components/PageContent/SelectedMineFilter';
 import {Button} from 'antd';
