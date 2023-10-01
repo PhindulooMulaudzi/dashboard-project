@@ -15,7 +15,7 @@ import {
   Legend,
 } from 'chart.js';
 import {Line} from 'react-chartjs-2';
-import {getProduction} from '../../../API';
+import {getProduction} from '../../../services/database-service';
 
 ChartJS.register (
   CategoryScale,

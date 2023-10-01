@@ -13,7 +13,7 @@ import {
   Legend,
 } from 'chart.js';
 
-import {getIncidentsCount} from '../../../API';
+import {getIncidentsCount} from '../../../services/database-service';
 
 ChartJS.register (
   CategoryScale,

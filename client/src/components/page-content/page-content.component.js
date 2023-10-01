@@ -1,4 +1,4 @@
-import AppRoutes from '../AppRoutes';
+import AppRoutes from '../app-routes/app-routers.component';
 
 function PageContent () {
   return (
